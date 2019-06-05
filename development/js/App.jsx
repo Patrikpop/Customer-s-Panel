@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styles from '../scss/custom.scss';
+import Header from './Header.jsx';
+import Content from './Content.jsx';
+import Footer from './Footer.jsx';
+
 
 class App extends React.Component {
     constructor(props) {
@@ -11,7 +14,7 @@ class App extends React.Component {
         return (
             <div>
                 <Header />
-                <Menu />
+                <Content />
                 <Footer />
             </div>
         );
