@@ -1,4 +1,101 @@
-@import url(https://fonts.googleapis.com/css?family=Charmonman:700|Open+Sans:400,600,700&subset=latin-ext);* {
+@import url(https://fonts.googleapis.com/css?family=Charmonman:700|Open+Sans:400,600,700&subset=latin-ext);@import url(https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700&display=swap);* {
   box-sizing: border-box;
   margin: 0;
   padding: 0; }
+
+html {
+  background: red; }
+
+html {
+  background-image: linear-gradient(-135deg, white, #e6e6e6);
+  font-family: 'Merriweather Sans', sans-serif; }
+
+.container {
+  margin: 0 auto;
+  width: 1170px; }
+
+.container--flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+
+.decor-line {
+  height: 5px;
+  width: 250px;
+  background-color: #0ecc63; }
+
+header {
+  margin: 0px;
+  font-size: 25px;
+  font-weight: bold;
+  width: 190px; }
+  header .a {
+    text-decoration: none;
+    width: 90px; }
+    header .a .header__panel {
+      color: #5793ec; }
+    header .a .header__customer {
+      color: #0ecc63; }
+
+ul {
+  list-style-type: none;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; }
+  ul li {
+    float: left;
+    padding: 5px 20px 80px 20px; }
+    ul li .a {
+      display: inline-block;
+      padding: 10px 10px;
+      color: #111111;
+      font-size: 15px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none; }
+      ul li .a:hover {
+        background-color: #e6e6e6;
+        border-radius: 20px; }
+    ul li .active-link {
+      background-color: #e6e6e6;
+      border-radius: 20px; }
+
+.start-content-left {
+  width: 500px;
+  height: 100%;
+  color: #5a5a5a; }
+  .start-content-left h1 {
+    padding-bottom: 20px;
+    font-size: 40px; }
+  .start-content-left .world-svg {
+    width: 500px; }
+
+.start-conent-right {
+  width: 500px;
+  height: 80%vh; }
+  .start-conent-right .ship-svg {
+    width: 500px; }
+
+.left-lcl-calc {
+  color: #5a5a5a; }
+  .left-lcl-calc h1 {
+    padding-bottom: 20px;
+    font-size: 40px;
+    color: #5a5a5a; }
+  .left-lcl-calc form {
+    color: #5a5a5a;
+    padding-bottom: 30px; }
+    .left-lcl-calc form input {
+      width: 120px; }
+    .left-lcl-calc form .sell-rate {
+      color: #87be53;
+      font-weight: bold;
+      border-radius: 20px; }
+      .left-lcl-calc form .sell-rate span {
+        padding-left: 3px;
+        padding-top: 10px;
+        padding-bottom: 10px; }
+
+.right-lcl-calc .box-svg {
+  width: 350px; }
