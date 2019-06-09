@@ -18,8 +18,15 @@ class LCLCalculator extends React.Component {
             pieces: "",
             currency: "",
             eurvalue: "",
-            usdvalue: ""
+            usdvalue: "",
+            selectedOption: "import"
         }
+    }
+
+    handleOptionChange = (e) => {
+        this.setState({
+          selectedOption: e.target.value
+        });
     }
 
     lengthHandle = (e) => {
@@ -134,76 +141,90 @@ class LCLCalculator extends React.Component {
 
     render() {
         return (
-        <div className="container--flex">
-            <div className="left-lcl-calc">
-            <h1>Kalkulator drobnicy morskiej</h1>
-            <form>
-                <p>Miejsce załadunku</p>
-                <ReactAutocomplete
-                    items={[
-                        { id: 'Warszawa', label: 'Warszawa' },
-                        { id: 'Gdynia', label: 'Gdynia' },
-                        { id: 'Poznań', label: 'Poznań' },
-                        { id: 'Kraków', label: 'Kraków' },
-                        { id: 'Wrocław', label: 'Wrocław' },
-                    ]}
-                    shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
-                    getItemValue={item => item.label}
-                    renderItem={(item, highlighted) =>
-                        <div
-                            key={item.id + item.country}
-                            style={{ backgroundColor: highlighted ? '#eee' : 'transparent' }}
-                        >
-                            {item.label}
-                        </div>
-                    }
-                    value={this.state.polvalue}
-                    onChange={e => this.setState({ polvalue: e.target.value })}
-                    onSelect={value => this.setState({ polvalue: value })}
-                />
-                <p>Port Docelowy</p>
-                <ReactAutocomplete
-                    items={exportRates.map((value) => {
-                        return { id: value.Destination, label: value.Destination, country: value.Country, rate: value.Rate, minimum: value.Minimum, transit: value.Transit, currency: value.Currency }
-                    }
-                    )}
-                    shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
-                    getItemValue={item => item.label}
-                    renderItem={(item, highlighted) =>
-                        <div
-                            key={item.id + item.country}
-                            style={{ backgroundColor: highlighted ? '#eee' : 'transparent' }}
-                        >
-                            {item.label}
-                        </div>
-                    }
-                    value={this.state.podvalue}
-                    onChange={e => this.setState({ podvalue: e.target.value })}
-                    onSelect={(value, item) => this.setState({
-                        podvalue: value,
-                        rate: item.rate,
-                        currency: item.currency
-                    })}
-                />
-                <p>Łączna waga</p>
-                <input type="text" placeholder="kg" value={this.state.weight} onChange={this.weighthHandle} />
-                <p>Ilość</p>
-                <input type="text" placeholder="" value={this.state.pieces} onChange={this.piecesHandle} />
-                <p>Wymiary [cm]</p>
-                <input type="text" placeholder="długość" value={this.state.lenghth} onChange={this.lengthHandle} />x
+            <div className="container--flex">
+                <div className="left-lcl-calc">
+                    <h1>Kalkulator drobnicy morskiej</h1>
+                    <form>
+                            <label>
+                                <input type="radio" value="import"
+                                    checked={this.state.selectedOption === 'import'}
+                                    onChange={this.handleOptionChange} />
+                                <span>Import</span> 
+                            </label>
+                            <label>
+                                <input type="radio" value="eksport"
+                                    checked={this.state.selectedOption === 'eksport'}
+                                     onChange={this.handleOptionChange} />
+                                <span>Eksport</span>
+                            </label>
+                        </form>
+                        <form>
+                        <p>Miejsce załadunku</p>
+                        <ReactAutocomplete
+                            items={[
+                                { id: 'Warszawa', label: 'Warszawa' },
+                                { id: 'Gdynia', label: 'Gdynia' },
+                                { id: 'Poznań', label: 'Poznań' },
+                                { id: 'Kraków', label: 'Kraków' },
+                                { id: 'Wrocław', label: 'Wrocław' },
+                            ]}
+                            shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
+                            getItemValue={item => item.label}
+                            renderItem={(item, highlighted) =>
+                                <div
+                                    key={item.id + item.country}
+                                    style={{ backgroundColor: highlighted ? '#eee' : 'transparent' }}
+                                >
+                                    {item.label}
+                                </div>
+                            }
+                            value={this.state.polvalue}
+                            onChange={e => this.setState({ polvalue: e.target.value })}
+                            onSelect={value => this.setState({ polvalue: value })}
+                        />
+                        <p>Port Docelowy</p>
+                        <ReactAutocomplete
+                            items={exportRates.map((value) => {
+                                return { id: value.Destination, label: value.Destination, country: value.Country, rate: value.Rate, minimum: value.Minimum, transit: value.Transit, currency: value.Currency }
+                            }
+                            )}
+                            shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
+                            getItemValue={item => item.label}
+                            renderItem={(item, highlighted) =>
+                                <div
+                                    key={item.id + item.country}
+                                    style={{ backgroundColor: highlighted ? '#eee' : 'transparent' }}
+                                >
+                                    {item.label}
+                                </div>
+                            }
+                            value={this.state.podvalue}
+                            onChange={e => this.setState({ podvalue: e.target.value })}
+                            onSelect={(value, item) => this.setState({
+                                podvalue: value,
+                                rate: item.rate,
+                                currency: item.currency
+                            })}
+                        />
+                        <p>Łączna waga</p>
+                        <input type="text" placeholder="kg" value={this.state.weight} onChange={this.weighthHandle} />
+                        <p>Ilość</p>
+                        <input type="text" placeholder="" value={this.state.pieces} onChange={this.piecesHandle} />
+                        <p>Wymiary [cm]</p>
+                        <input type="text" placeholder="długość" value={this.state.lenghth} onChange={this.lengthHandle} />x
                 <input type="text" placeholder="szerokość" value={this.state.width} onChange={this.widthHandle} />x
                 <input type="text" placeholder="wysokość" value={this.state.height} onChange={this.heighthHandle} />cm
                 <p className="endMsg">{this.state.endMsg}</p>
-                <p className="result-volume">Łączna objętość wynosi {this.state.volume}m<sup>3</sup></p>
-                <div className="sell-rate"><span>Fracht wynosi: </span>{this.priceCounter()}</div>
-            </form>
+                        <p className="result-volume">Łączna objętość wynosi {this.state.volume}m<sup>3</sup></p>
+                        <div className="sell-rate"><span>Fracht wynosi: </span>{this.priceCounter()}</div>
+                    </form>
+                </div>
+                <div className="right-lcl-calc">
+                    <object type="image/svg+xml" data="./images/box.svg" className="box-svg" />
+                </div>
             </div>
-            <div className="right-lcl-calc">
-            <object type="image/svg+xml" data="./images/box.svg" className="box-svg" />
-            </div>
-        </div>
-       );
+        );
     }
 }
-    
+
 export default LCLCalculator;

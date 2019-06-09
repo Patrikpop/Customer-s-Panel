@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import LCLCalculator from './LCL Calculator.jsx';
 import FCLCalculator from './FCL calculator.jsx';
+import DoneBookings from './Done Bookings.jsx';
+import ActiveBookings from './Active Bookings.jsx';
 import {
     HashRouter,
     Route,
